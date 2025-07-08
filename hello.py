@@ -6,19 +6,51 @@ print(a*b+c)
 print("my name is juwon. what is your name?")
 import pygame
 import sys
+def display_menu():
+    print("\nTo-Do List Menu:")
+    print("1. 할일추가")
+    print("2. 할일보기")
+    print("3. 완료표시하기")
+    print("4. 할일지우기")
+    print("5. 나가기")
+    print("번호를 입력하여 사용할 수 있습니다.")
 
 pygame.init()
+def add_task(tasks):
+    task = input("할일을 쓰시오: ")
+    tasks.append({"task": task, "completed": False})
+    print(f"Task '{task}' added.")
 
 # 화면 설정
 WIDTH, HEIGHT = 800, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("시뮬레이션")
+def view_tasks(tasks):
+    if not tasks:
+        print("No tasks to display.")
+    else:
+        print("Your Tasks:")
+        for idx, task in enumerate(tasks, 1):
+            status = "Completed" if task["완료됨"] else "완료되지 않았습니다"
+            print(f"{idx}. {task['task']} - {status}")
 
 # 색 정의
 BG_COLOR = (30, 30, 30)
 BUTTON_COLOR = (70, 130, 180)
 BUTTON_HOVER = (100, 160, 210)
 TEXT_COLOR = (255, 255, 255)
+def mark_completed(tasks):
+    view_tasks(tasks)
+    if tasks:
+        try:
+            task_num = int(input("완료처리할 할일의 번호를쓰십시오: "))
+            if 1 <= task_num <= len(tasks):
+                tasks[task_num - 1]["completed"] = True
+                print(f"Task '{tasks[task_num - 1]['task']}' marked as completed.")
+            else:
+                print("Invalid task number.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
 
 # 폰트 설정
 title_font = pygame.font.SysFont(None, 72)
@@ -50,10 +82,23 @@ def draw_buttons(mouse_pos):
         txt_s = button_font.render(info["text"], True, TEXT_COLOR)
         txt_r = txt_s.get_rect(center=rect.center)
         screen.blit(txt_s, txt_r)
+def delete_task(tasks):
+    view_tasks(tasks)
+    if tasks:
+        try:
+            task_num = int(input("지울할일의 번호를 쓰십시오: "))
+            if 1 <= task_num <= len(tasks):
+                removed_task = tasks.pop(task_num - 1)
+                print(f"할일 '{removed_task['task']}' (이)가 추가되었습니다.")
+            else:
+                print("Invalid task number.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
 
 def main():
     clock = pygame.time.Clock()
 
+    tasks = []
     while True:
         mouse_pos = pygame.mouse.get_pos()
         for ev in pygame.event.get():
@@ -71,6 +116,21 @@ def main():
         draw_buttons(mouse_pos)
         pygame.display.flip()
         clock.tick(60)
+        display_menu()
+        choice = input("번호를 선택하십시오: ")
+        if choice == '1':
+            add_task(tasks)
+        elif choice == '2':
+            view_tasks(tasks)
+        elif choice == '3':
+            mark_completed(tasks)
+        elif choice == '4':
+            delete_task(tasks)
+        elif choice == '5':
+            print("To-Do List가 종료됩니다...")
+            break
+        else:
+            print("Invalid choice. Please try again.")
 
 if __name__ == "__main__":
     main()
