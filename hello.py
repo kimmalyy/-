@@ -12,7 +12,7 @@ pygame.init()
 # 화면 설정
 WIDTH, HEIGHT = 800, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("게임 프론트엔드")
+pygame.display.set_caption("시뮬레이션")
 
 # 색 정의
 BG_COLOR = (30, 30, 30)
