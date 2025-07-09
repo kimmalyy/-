@@ -15,13 +15,11 @@ def display_menu():
     print("5. 나가기")
     print("번호를 입력하여 사용할 수 있습니다.")
 
-pygame.init()
 def add_task(tasks):
     task = input("할일을 쓰시오: ")
     tasks.append({"task": task, "completed": False})
     print(f"Task '{task}' added.")
 
-# 화면 설정
 WIDTH, HEIGHT = 800, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("시뮬레이션")
@@ -135,3 +133,5 @@ def main():
 if __name__ == "__main__":
     main()
 
+cho = input("무엇을 하시겠습니까?")
+print("네!", cho , "를 시작하겠습니다!")
