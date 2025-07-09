@@ -14,11 +14,13 @@ def display_menu():
     print("4. 할일지우기")
     print("5. 나가기")
     print("번호를 입력하여 사용할 수 있습니다.")
+print("안녕하세요. 저는 주원이라고 합니다.")
 
 def add_task(tasks):
     task = input("할일을 쓰시오: ")
     tasks.append({"task": task, "completed": False})
     print(f"Task '{task}' added.")
+#사람이 자기 닉네임을 입력할 수 있게하는 코드
 
 WIDTH, HEIGHT = 800, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -31,6 +33,8 @@ def view_tasks(tasks):
         for idx, task in enumerate(tasks, 1):
             status = "Completed" if task["완료됨"] else "완료되지 않았습니다"
             print(f"{idx}. {task['task']} - {status}")
+nick_name = input("당신의 이름은 무엇인가요?")
+print("안녕하세요", nick_name ,"님!")
 
 # 색 정의
 BG_COLOR = (30, 30, 30)
