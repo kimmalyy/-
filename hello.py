@@ -7,7 +7,8 @@ def start_program():
     # 이름 입력
     nick_name = simpledialog.askstring("이름입력", "당신의 이름은 무엇인가요?")
     if not nick_name:
-        return  # 취소하면 종료
+        return  
+    # 취소하면 종료
 
     messagebox.showinfo("환영합니다!", f"안녕하세요, {nick_name}님!")
 
@@ -28,6 +29,8 @@ def start_program():
                 messagebox.showinfo("이름 변경 완료", f"안녕하세요, {new_name}님!")
         elif confirm == "아니오":
             messagebox.showinfo("이름 유지", f"이름을 변경하지 않겠습니다. 여전히 {nick_name}님입니다.")
+            return
+        
         else:
             messagebox.showerror("입력 오류", "네 또는 아니오로 입력해주세요.")
             confirm = simpledialog.askstring("확인", "이름을 변경하시겠습니까? (네/아니오)")
