@@ -136,6 +136,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+print("쉬기,이름변경,3,4,5,중에")
 
 cho = input("무엇을 하시겠습니까?")
 print("네!", cho , "를 시작하겠습니다!")
+if cho == '쉬기':
+        print("네, 쉬기를 실행하겠습니다.")
+        
+elif cho == '이름변경':
+        name = input("이름을 변경하시겠습니까? 네/아니오")
+        if name == '네':
+            na = input("이름을 입력하십시오")
+            print("안녕하세요", na ,"님!")
+        elif name == '아니오':
+               print("네, 이름을 변경하지 않겠습니다. 여전히 당신의 이름은", nick_name , "입니다.")
